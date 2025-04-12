@@ -1,11 +1,4 @@
 
-
-![GitHub repo size](https://img.shields.io/github/repo-size/yogeshk2202/Mealmateapp)
-![GitHub stars](https://img.shields.io/github/stars/yogeshk2202/Mealmateapp?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yogeshk2202/Mealmateapp?style=social)
-![GitHub last commit](https://img.shields.io/github/last-commit/yogeshk2202/Mealmateapp)
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
-
 # 🍽️ Mealmate - Online Food Ordering System
 
 **Mealmate** is a Django-based web application that enables users to register as **restaurant owners** or **customers**.  
