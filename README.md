@@ -63,6 +63,7 @@ mealmate/
 │   │── views.py
 │── manage.py
 │── requirements.txt
+
 API Endpoints (If Using Django REST Framework)
 Method	Endpoint	Description
 GET	/restaurants/	List all restaurants
@@ -72,6 +73,7 @@ DELETE	/restaurants/delete/<id>/	Delete a restaurant
 GET	/menu/	Get menu items
 POST	/order/	Place an order
 Razorpay Payment Integration
+
 Sign up at Razorpay
 Get API keys from Razorpay Dashboard
 Add API keys to Django settings:
