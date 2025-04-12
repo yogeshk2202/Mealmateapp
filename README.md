@@ -1,6 +1,5 @@
 
-<<<<<<< HEAD
-=======
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/yogeshk2202/Mealmateapp)
 ![GitHub stars](https://img.shields.io/github/stars/yogeshk2202/Mealmateapp?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/yogeshk2202/Mealmateapp?style=social)
