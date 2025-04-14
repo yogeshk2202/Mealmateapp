@@ -10,4 +10,4 @@ class ResForm(forms.ModelForm):
 class MenuForm(forms.ModelForm):
     class Meta:
         model = Menu
-        fields = ['res', 'item_name', 'description', 'price', 'is_available', 'category']
+        fields = ['res','item_name','description','price','is_available','category']

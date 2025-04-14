@@ -5,46 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout</title>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f7fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
+
+      .container {
+        background-color: #ffffff;
+        margin-top: 40px;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        width: 90%;
+        max-width: 600px;
+      }
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 20px;
+        color: #444;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f0f0f0;
+      }
+
+      h3 {
+        text-align: right;
+        margin-top: 10px;
+        margin-bottom: 30px;
+      }
+
+      .error {
+        color: red;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      #rzp-button {
+        background-color: #528ff0;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        transition: background-color 0.3s;
+      }
+
+      #rzp-button:hover {
+        background-color: #3b73cc;
+      }
+    </style>
   </head>
   <body>
-    <h1>Checkout</h1>
-    <h2>Welcome, {{ username }}</h2>
+    <div class="container">
+      <h1>Checkout</h1>
+      <h2>Welcome, {{ username }}</h2>
 
-    {% if error %}
-    <p style="color: red">{{ error }}</p>
-    {% else %}
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in cart_items %}
-        <tr>
-          <td>{{ item.item_name }}</td>
-          <td>₹{{ item.price }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <h3>Total: ₹{{ total_price }}</h3>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% else %}
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart_items %}
+              <tr>
+                <td>{{ item.item_name }}</td>
+                <td>₹{{ item.price }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <h3>Total: ₹{{ total_price }}</h3>
 
-    <button id="rzp-button">Pay with Razorpay</button>
-    {% endif %}
+        <button id="rzp-button">Pay with Razorpay</button>
+      {% endif %}
+    </div>
 
     <script>
       var options = {
-        key: "{{ razorpay_key_id }}", // Razorpay API key
-        amount: "{{ total_price|floatformat:2|add:'0.00'|floatformat:2 }}00", // Amount in paisa
+        key: "{{ razorpay_key_id }}",
+        amount: "{{ total_price|floatformat:2|add:'0.00'|floatformat:2 }}00",
         currency: "INR",
         name: "Meal Mate",
         description: "Order Payment",
-        order_id: "{{ order_id }}", // Razorpay order ID
+        order_id: "{{ order_id }}",
         handler: function (response) {
           alert("Payment Successful!");
-          // Redirect to the orders page
           window.location.href = "{% url 'delivery:orders' username %}";
         },
         prefill: {
@@ -56,6 +137,7 @@
           color: "#528FF0",
         },
       };
+
       var rzp = new Razorpay(options);
 
       document.getElementById("rzp-button").onclick = function (e) {

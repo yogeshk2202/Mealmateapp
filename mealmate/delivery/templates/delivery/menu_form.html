@@ -1,7 +1,68 @@
-{% extends "delivery/base.html" %} {% block content %}
-<div style="margin-top: 50px"></div>
-<form method="POST">
-  {% csrf_token %} {{form}}
-  <button>Submit</button>
-</form>
+{% extends "delivery/base.html" %}
+{% block content %}
+<div class="form-container">
+  <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button class="submit-btn">Submit</button>
+  </form>
+</div>
+
+<style>
+  /* Form Container Styling */
+  .form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Form Input Fields Styling */
+  .form-container input,
+  .form-container select,
+  .form-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  /* Input Focus Styling */
+  .form-container input:focus,
+  .form-container select:focus,
+  .form-container textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+
+  /* Submit Button Styling */
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Submit Button Hover Effect */
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+
+  /* Submit Button Focus Effect */
+  .submit-btn:focus {
+    outline: none;
+    background-color: #45a049;
+  }
+</style>
 {% endblock %}

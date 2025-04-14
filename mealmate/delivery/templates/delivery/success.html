@@ -1,7 +1,19 @@
-{% extends "delivery/base.html" %} {% block content %}
-<h1>Login success</h1>
+{% extends "delivery/base.html" %}
+{% block content %}
+  <div style="text-align: center; margin-top: 50px;">
+    <h1 style="color: #4CAF50;">Login Success</h1>
+    <p>Welcome back! You have successfully logged in.</p>
 
-<a href="{% url 'delivery:add_res' %}">Add Restaurants </a>
-<a href="{% url 'delivery:display_res' %}">Show all Restaurants </a>
+    <div style="margin-top: 30px;">
+      <a href="{% url 'delivery:add_res' %}" 
+         style="padding: 10px 20px; background-color: #4CAF50; color: white; border-radius: 5px; text-decoration: none; margin-right: 20px; font-size: 1.1rem;">
+        Add Restaurants
+      </a>
 
+      <a href="{% url 'delivery:display_res' %}" 
+         style="padding: 10px 20px; background-color: #008CBA; color: white; border-radius: 5px; text-decoration: none; font-size: 1.1rem;">
+        Show all Restaurants
+      </a>
+    </div>
+  </div>
 {% endblock %}

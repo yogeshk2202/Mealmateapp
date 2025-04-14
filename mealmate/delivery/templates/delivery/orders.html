@@ -6,24 +6,88 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'delivery/css/styles.css' %}" />
     <title>Order Summary</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .container {
+        width: 80%;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #4CAF50;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-top: 20px;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      .address {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-link:hover {
+        background-color: #45a049;
+      }
+    </style>
   </head>
   <body>
-    <h1>Thank you for your order, {{ username }}!</h1>
+    <div class="container">
+      <h1>Thank you for your order, {{ username }}!</h1>
 
-    <h2>Delivery Address</h2>
-    <p>{{ customer.address }}</p>
+      <h2>Delivery Address</h2>
+      <div class="address">
+        <p>{{ customer.address }}</p>
+      </div>
 
-    <p>
-      Your order will be delivered to this location shortly. Thank you for
-      choosing Meal Mate!
-    </p>
+      <p>
+        Your order will be delivered to this location shortly. Thank you for
+        choosing Meal Mate!
+      </p>
 
-    {% if cart_items %}
-    <a href="{% url 'customer_menu' cart_items.0.restaurant.id username %}"
-      >Back to Restaurants</a
-    >
-    {% else %}
-    <a href="/">Back to Home</a>
-    {% endif %}
+      {% if cart_items %}
+      <a href="{% url 'customer_menu' cart_items.0.restaurant.id username %}" class="back-link">
+        Back to Restaurants
+      </a>
+      {% else %}
+      <a href="/" class="back-link">Back to Home</a>
+      {% endif %}
+    </div>
   </body>
 </html>

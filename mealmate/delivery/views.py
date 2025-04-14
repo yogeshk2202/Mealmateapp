@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from delivery.models import Customer, Restaurants, Menu, Cart
 from delivery.forms import ResForm, MenuForm
 from django.conf import settings
+import razorpay
+
 
 # Create your views here.
 def index(request):
@@ -76,7 +78,7 @@ def delete_menu(request,id):
     item = Menu.objects.get(pk=id)
     res_id = item.res.id
     item.delete()
-    return redirect('delivery:view_menu',res_id)
+    return redirect('delivery/view_menu.html',res_id)
 
 def cusdisplay_res(request, username):
     customer = Customer.objects.get(username=username)

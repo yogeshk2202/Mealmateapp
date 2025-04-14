@@ -5,94 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Delivery</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* Set a solid background color */
+      body {
+        background-color: #f4f6f6; /* Soft Light Gray */
+        color: #333; /* Dark text for contrast */
+        padding-top: 80px; /* To prevent content being hidden under the navbar */
+      }
+
+      /* Navigation Bar */
       nav {
-        background-color: #333;
+        background-color: #2d3436; /* Dark Slate Color */
         padding: 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
       }
+
+      nav h2 {
+        color: #e17055; /* Soft Orange for title */
+        font-size: 28px;
+        font-weight: 600;
+      }
+
       .nav-links {
         display: flex;
-        gap: 15px;
+        gap: 20px;
       }
+
       .nav-links a {
         text-decoration: none;
-        color: white;
-        padding: 10px 15px;
-        background-color: #555;
-        border-radius: 5px;
+        color: #b2bec3; /* Light Gray for links */
+        padding: 12px 20px;
+        background-color: #00b894; /* Emerald Green for links */
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s, transform 0.2s;
       }
+
       .nav-links a:hover {
-        background-color: #777;
+        background-color: #0984e3; /* Blue Hover effect */
+        transform: scale(1.05);
+      }
+
+      /* Content Container */
+      .content-container {
+        margin-top: 100px; /* Make space for the fixed navbar */
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 32px;
+        margin: 20px 0;
+        color: #2d3436; /* Dark Slate for headings */
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 18px;
+        margin: 10px 0;
+        color: #636e72; /* Medium Gray for text */
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #6c5ce7; /* Purple for button */
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background-color: #a29bfe; /* Lighter Purple Hover */
+        transform: scale(1.05);
+      }
+
+      button:active {
+        background-color: #4e2a84; /* Darker Purple */
+      }
+
+      /* Table Styling */
+      table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      th, td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #dfe6e9;
+      }
+
+      th {
+        background-color: #0984e3; /* Bright Blue Header */
+        color: white;
+      }
+
+      tr:hover {
+        background-color: #dfe6e9; /* Light Gray Hover Effect */
+      }
+
+      /* Image Styling */
+      img {
+        border-radius: 6px;
+        object-fit: cover;
       }
     </style>
   </head>
   <body>
     <nav>
-      <h2 style="color: white">Food Delivery</h2>
+      <h2>Food Delivery</h2>
       <div class="nav-links">
-        <a href="{% url 'delivery:cusdisplay_res' username %}"
-          >View Restaurants</a
-        >
+        <a href="{% url 'delivery:cusdisplay_res' username %}">View Restaurants</a>
         <a href="{% url 'delivery:sign_in' %}">Sign In</a>
         <a href="{% url 'delivery:sign_up' %}">Sign Up</a>
       </div>
     </nav>
-  </body>
-</html>
-<div style="margin-top: 50px"></div>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Menu - {{ res.Res_name }}</title>
-  </head>
-  <body>
-    <h2>Menu for {{ res.Res_name }}</h2>
-    <p>Address: {{ res.address }}</p>
-    <p>Category: {{ res.Food_cat }}</p>
-    <p>Rating: {{ res.rating }}</p>
-    <a href="{% url 'delivery:show_cart' username %}">Show Cart </a>
 
-    <table border="1" style="width: 100vw">
-      <tr>
-        <th>Item Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Availability</th>
-        <th>Category</th>
-        <th>Action</th>
-        <!-- New column for Add to Cart button -->
-      </tr>
-      {% for item in menu %}
-      <tr>
-        <td>{{ item.item_name }}</td>
-        <td>{{ item.description }}</td>
-        <td>${{ item.price }}</td>
-        <td>
-          {% if item.is_available %}Available{% else %}Not Available{% endif %}
-        </td>
-        <td>{{ item.category }}</td>
-        <td>
-          <form
-            method="POST"
-            action="{% url 'delivery:add_to_cart' item.id username %}"
-          >
-            {% csrf_token %}
-            <button
-              type="submit"
-              onclick="return confirm('Are you sure you want to add to cart?')"
-            >
-              Add to Cart
-            </button>
-          </form>
-        </td>
-      </tr>
-      {% empty %}
-      <tr>
-        <td colspan="6">No menu items available.</td>
-      </tr>
-      {% endfor %}
-    </table>
+    <div class="content-container">
+      <h2>Menu for {{ res.Res_name }}</h2>
+      <p>Address: {{ res.address }}</p>
+      <p>Category: {{ res.Food_cat }}</p>
+      <p>Rating: {{ res.rating }}</p>
+      <button><a href="{% url 'delivery:show_cart' username %}" style="color: white; text-decoration: none;">Show Cart</a></button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Availability</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in menu %}
+          <tr>
+            <td>{{ item.item_name }}</td>
+            <td>{{ item.description }}</td>
+            <td>${{ item.price }}</td>
+            <td>
+              {% if item.is_available %}Available{% else %}Not Available{% endif %}
+            </td>
+            <td>{{ item.category }}</td>
+            <td>
+              <form method="POST" action="{% url 'delivery:add_to_cart' item.id username %}">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('Are you sure you want to add to cart?')">Add to Cart</button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6">No menu items available.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

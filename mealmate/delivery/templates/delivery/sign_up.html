@@ -1,24 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-<form method="POST" action="{% url 'delivery:handle_signup' %}">
-    {% csrf_token %}
+      .form-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 450px;
+      }
 
-    <h2>Create Account</h2>
+      .form-container h2 {
+        text-align: center;
+        color: #333;
+      }
 
-    <label for="username">Username:</label><br>
-    <input type="text" name="username" id="username" required><br><br>
+      label {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 8px;
+        display: block;
+      }
 
-    <label for="password">Password:</label><br>
-    <input type="password" name="password" id="password" required><br><br>
+      input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
 
-    <label for="email">Email:</label><br>
-    <input type="email" name="email" id="email" required><br><br>
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-    <label for="mobile">Mobile:</label><br>
-    <input type="text" name="mobile" id="mobile" required><br><br>
+      button:hover {
+        background-color: #45a049;
+      }
 
-    <label for="address">Address:</label><br>
-    <textarea name="address" id="address" rows="3" required></textarea><br><br>
+      .redirect-link {
+        text-align: center;
+        margin-top: 10px;
+      }
 
-    <button type="submit">Sign Up</button>
-</form>
+      .redirect-link a {
+        color: #4CAF50;
+        text-decoration: none;
+      }
 
+      .redirect-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Sign Up</h2>
+      <form method="POST" action="{% url 'delivery:handle_signup' %}">
+        {% csrf_token %}
+        <label>Username</label>
+        <input type="text" name="username" required />
+
+        <label>Password</label>
+        <input type="password" name="password" required />
+
+        <label>Email</label>
+        <input type="email" name="email" required />
+
+        <label>Mobile</label>
+        <input type="tel" name="mobile" required />
+
+        <label>Address</label>
+        <input type="text" name="address" required />
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <div class="redirect-link">
+        <p>Already have an account? <a href="{% url 'delivery:sign_in' %}">Sign In</a></p>
+      </div>
+    </div>
+  </body>
+</html>

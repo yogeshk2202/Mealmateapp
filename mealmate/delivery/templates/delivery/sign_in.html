@@ -1,11 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-<form method="POST" action="{% url 'delivery:handle_signin' %}">
-    {% csrf_token %}
-    <label>Username </label>
-    <input type="text" name = "username" />
+      .form-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
 
-    <label>Password </label>
-    <input type="text" name = "password" />
+      .form-container h2 {
+        text-align: center;
+        color: #333;
+      }
 
-    <button>Sign In</button>
-</form>
+      label {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      input[type="password"],
+      input[type="text"] {
+        font-size: 1.1rem;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .error-message {
+        color: red;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .redirect-link {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .redirect-link a {
+        color: #4CAF50;
+        text-decoration: none;
+      }
+
+      .redirect-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Sign In</h2>
+      <form method="POST" action="{% url 'delivery:handle_signin' %}">
+        {% csrf_token %}
+        <label>Username</label>
+        <input type="text" name="username" required />
+
+        <label>Password</label>
+        <input type="password" name="password" required />
+
+        <button type="submit">Sign In</button>
+
+        <!-- Error Message (if any) -->
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+      </form>
+
+      <div class="redirect-link">
+        <p>Don't have an account? <a href="{% url 'delivery:sign_up' %}">Sign Up</a></p>
+      </div>
+    </div>
+  </body>
+</html>
