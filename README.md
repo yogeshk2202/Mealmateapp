@@ -5,7 +5,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/yogeshk2202/Mealmateapp)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 =======
->>>>>>> 0e1c2a450ffa1b9a825c47bad2eb08dbfdc6bf24
 
 # Mealmate - Online Food Ordering System
 
