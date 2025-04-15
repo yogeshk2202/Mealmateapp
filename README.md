@@ -7,66 +7,72 @@
 =======
 >>>>>>> 0e1c2a450ffa1b9a825c47bad2eb08dbfdc6bf24
 
-# 🍽️ Mealmate - Online Food Ordering System
+# Mealmate - Online Food Ordering System
 
-**Mealmate** is a Django-based web application that enables users to register as **restaurant owners** or **customers**.  
-- Restaurant owners can manage their restaurants and menus.  
-- Customers can browse menus, add items to their cart, place orders, and pay using **Razorpay**.
+Mealmate is a Django-based web application that allows users to register as restaurant owners or customers. Restaurant owners can add, edit, and delete restaurants, while customers can browse menus, place orders, and make payments using Razorpay.
 
----
+## Features
 
-## 🚀 Features
+### **Authentication**
+- User registration and login (for both restaurant owners and customers)
+- Secure authentication using Django's built-in authentication system
 
-### 🔐 Authentication
-- User registration & login (Restaurant Owner & Customer)
-- Secure authentication using Django's built-in system
+### **Restaurant Management**
+- Add new restaurants
+- Edit and update restaurant details
+- Delete restaurants
 
-### 🏪 Restaurant Management
-- Add, edit, and delete restaurants
-
-### 📋 Menu & Orders
+### **Menu & Orders**
 - Customers can browse menus
-- Add items to cart and place orders
+- Add items to the cart
+- Place orders
 
-### 💳 Payment Integration
-- Razorpay integration for secure online payments
+### **Payment Integration**
+- Razorpay integrated for secure online payments
 
----
+## Installation & Setup
 
-## ⚙️ Installation & Setup
+### **1. Clone the Repository**
+```sh
+git clone https://github.com/your-username/mealmate.git
+cd mealmate
+```
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yogeshk2202/Mealmateapp.git
-cd Mealmateapp
+### **2. Set Up a Virtual Environment**
+```sh
+python3 -m venv venv
+source venv/bin/activate  # For Mac/Linux
+```
 
-Set Up a Virtual Environment
-
-python -m venv venv
-venv\Scripts\activate          # For Windows
-# OR
-source venv/bin/activate       # For Mac/Linux
-
-. Install Dependencies
+### **3. Install Dependencies**
+```sh
 pip install -r requirements.txt
+```
 
-Apply Migrations
+### **4. Apply Migrations**
+```sh
 python manage.py migrate
+```
 
-Create a Superuser
+### **5. Create a Superuser**
+```sh
 python manage.py createsuperuser
+```
 
-Run the Development Server
+### **6. Run the Development Server**
+```sh
 python manage.py runserver
-Visit: http://127.0.0.1:8000/
+```
 
-📁 Directory Structure
+Now, open your browser and go to `http://127.0.0.1:8000/`
+
+## Directory Structure
+```
 mealmate/
-│
-├── delivery/
-│   ├── migrations/
-│   ├── static/delivery/css/style.css
-│   ├── templates/delivery/
+│── delivery/
+│   │── migrations/
+│   │── static/
+│   │── templates/delivery/
 │   │   ├── add_res.html
 │   │   ├── base.html
 │   │   ├── checkout.html
@@ -81,44 +87,37 @@ mealmate/
 │   │   ├── sign_in.html
 │   │   ├── sign_up.html
 │   │   ├── success.html
-│   │   └── userdata.html
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── forms.py
-│   ├── models.py
-│   ├── tests.py
-│   └── views.py
-│
-├── manage.py
-├── requirements.txt
-└── mealmate/
-    ├── __init__.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
+│   │   ├── userdata.html
+│   │── __init__.py
+│   │── admin.py
+│   │── apps.py
+│   │── forms.py
+│   │── models.py
+│   │── tests.py
+│   │── views.py
+│── manage.py
+│── requirements.txt
+```
 
+## API Endpoints (If Using Django REST Framework)
+| Method | Endpoint | Description |
+|--------|----------------|--------------------------------|
+| GET | `/restaurants/` | List all restaurants |
+| POST | `/restaurants/add/` | Add a new restaurant |
+| PUT | `/restaurants/update/<id>/` | Update restaurant details |
+| DELETE | `/restaurants/delete/<id>/` | Delete a restaurant |
+| GET | `/menu/` | Get menu items |
+| POST | `/order/` | Place an order |
 
-### 🔌 API Endpoints (If Using Django REST Framework)
-
-| Method | Endpoint                      | Description                |
-|--------|-------------------------------|----------------------------|
-| GET    | `/restaurants/`               | List all restaurants       |
-| POST   | `/restaurants/add/`           | Add a new restaurant       |
-| PUT    | `/restaurants/update/<id>/`   | Update restaurant details  |
-| DELETE | `/restaurants/delete/<id>/`   | Delete a restaurant        |
-| GET    | `/menu/`                      | Get menu items             |
-| POST   | `/order/`                     | Place an order             |
-
-💰 Razorpay Payment Integration
-1.Sign up at Razorpay
-
-2.Get API keys from Razorpay Dashboard
-
-3.Add the following to your settings.py:
-
+## Razorpay Payment Integration
+1. Sign up at [Razorpay](https://razorpay.com/)
+2. Get API keys from Razorpay Dashboard
+3. Add API keys to Django settings:
+```python
 RAZORPAY_KEY_ID = "your_key_id"
 RAZORPAY_KEY_SECRET = "your_key_secret"
+```
+
 
 📫 Contact
 Made with ❤️ by Yogesh K
