@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/yogeshk2202/Mealmateapp)
 ![GitHub stars](https://img.shields.io/github/stars/yogeshk2202/Mealmateapp?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/yogeshk2202/Mealmateapp?style=social)
@@ -121,7 +121,5 @@ RAZORPAY_KEY_SECRET = "your_key_secret"
 📫 Contact
 Made with ❤️ by Yogesh K
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 0e1c2a450ffa1b9a825c47bad2eb08dbfdc6bf24
+
